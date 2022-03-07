@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -en "$(ls -1t | head -n 10)\n"

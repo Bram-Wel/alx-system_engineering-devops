@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -en "$(head -n 3 iacta | tail -n +3)\n"

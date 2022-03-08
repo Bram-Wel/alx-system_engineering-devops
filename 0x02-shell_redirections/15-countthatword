@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -en "$(grep -c root /etc/passwd)\n"

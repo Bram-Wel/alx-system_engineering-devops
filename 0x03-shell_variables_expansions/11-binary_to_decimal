@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -en "$((2#$BINARY))\n"

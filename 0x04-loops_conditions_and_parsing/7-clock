@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Prints Best School 10 times in a loop
+i=0
+while (("$i" < 12)) 
+do  echo "Hour: $i"
+  j=1
+  while (("$j" < 60))
+  do  echo "$j"
+    ((j++))
+  done
+  ((i++))
+done

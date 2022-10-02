@@ -1,1 +1,1 @@
-# OSI
+# /etc/hosts

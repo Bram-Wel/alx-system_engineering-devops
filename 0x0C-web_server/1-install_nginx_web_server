@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Installs & configures nginx on a server
+#+	listening port :80
+#+	Default Static page contains "Hello World"
+
+apt update && apt install nginx -y
+ufw allow 'Nginx HTTP'
+echo "Hello World" > /var/www/html/index.html

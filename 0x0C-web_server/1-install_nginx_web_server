@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Installs & configures nginx on a server
-#+	listening port :80
-#+	Default Static page contains "Hello World"
+# Install nginx --> engine x
 
 sudo apt update
 sudo apt install nginx

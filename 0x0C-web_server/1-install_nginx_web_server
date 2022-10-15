@@ -3,7 +3,10 @@
 #+	listening port :80
 #+	Default Static page contains "Hello World"
 
-sudo apt update && sudo apt -y install nginx
-sudo ufw enable && sudo ufw allow 'Nginx HTTP'
-echo "Hello World" > /var/www/html/index.html
+sudo apt update
+sudo apt install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+echo "Hello World!" > /var/www/html/index.html
 sudo service nginx restart

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Installs Nginx:
+#+	Runs on port 80
+#+	Right ownership and permissions
+#+	Has a default page => Hello World!
+#+	File is run as root/ with sudo priviledges
+
+apt update && apt upgrade -y
+apt autoremove && apt autoclean
+apt update && apt install nginx -y
+chown -R ubuntu:ubuntu /var/www/html
+chmod -R 755 /var/www/html
+echo "Hello World!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+new="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+new2="\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}"
+sed -i "s/server_name _;/$new$new2/" /etc/nginx/sites-available/default
+ufw allow 'Nginx HTTP'
+service nginx restart

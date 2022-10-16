@@ -11,10 +11,14 @@ package { 'nginx':
 }
 
 file_line { 'redirect':
-  ensure  => present,
-  path    => '/etc/nginx/sites-available/default',
-  after   => 'server_name _;',
-  line    => 'rewrite ^/reirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'server_name _;',
+  line   => 'rewrite ^/reirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
 }
 
 service { 'nginx':

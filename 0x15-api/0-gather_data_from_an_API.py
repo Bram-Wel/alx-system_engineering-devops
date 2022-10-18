@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Obtains TO-DO list using REST API ('https://jsonplaceholder.typicode.com')"""
+"""Return TO-DO list for employee Id."""
 
 from ast import literal_eval
 from sys import argv

@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Obtains TODO list using REST API ('https://jsonplaceholder.typicode.com')"""
 
-from sys import argv
 from ast import literal_eval
+from sys import argv
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
 

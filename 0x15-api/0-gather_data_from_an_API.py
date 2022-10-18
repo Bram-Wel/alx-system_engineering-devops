@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-"""Return TO-DO list for employee Id."""
+"""Obtain TODO list with 'https://jsonplaceholder.typicode.com'
+REST API.
+"""
 
-from ast import literal_eval
 from sys import argv
+from ast import literal_eval
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
 

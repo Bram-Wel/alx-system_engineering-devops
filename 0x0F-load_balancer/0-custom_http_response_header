@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Installs Nginx:
+#+	Runs on port 80
+#+	Right ownership and permissions
+#+	Has a default page => Hello World!
+#+	File is run as root/ with sudo priviledge
+#+	Adds custom header:=> X-Served-By: HostName
+
+apt update && apt upgrade -y
+apt autoremove && apt autoclean
+apt update && apt install nginx -y
+chown -R ubuntu:ubuntu /var/www/html
+chmod -R 755 /var/www/html
+echo "Hello World!" > /var/www/html/index.html
+new="add_header X-Served-By \"$HOSTNAME\";\n\t\ttry_files \$uri \$uri\/ =404;"
+sed -i "1,65 s/try_files \$uri \$uri\/ =404;/$new/" /etc/nginx/sites-available/default
+ufw allow 'Nginx HTTP'
+if nginx -t;
+then
+  service nginx restart
+fi

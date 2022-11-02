@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module describes a query freturn."""
 
-import json
 import requests
 
 

@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""Obtain TODO list with 'https://jsonplaceholder.typicode.com'
-REST API.
-"""
+"""Obtain TODO list with 'https://jsonplaceholder.typicode.com' REST API."""
 
 from sys import argv
 from ast import literal_eval

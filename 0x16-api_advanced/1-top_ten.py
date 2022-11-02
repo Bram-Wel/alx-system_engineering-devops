@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-"""script for parsing web data from an api
-"""
+"""Script for parsing web data from an api."""
 import requests
 
 
 def top_ten(subreddit):
-    """api call to reddit to get the number of subscribers
-    """
+    """Get the number of subscribers."""
     base_url = 'https://www.reddit.com/r/'
     headers = {
         'User-Agent':

@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
     Return:
         The number of subscribers for the subreddit, or 0 if
     """
-    headers = {'user-agent': 'linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"'}
+    headers = {'user-agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"}
     url = f"https://api.reddit.com/r/{subreddit}/about"
     resp = requests.get(url, headers, allow_redirects=False)
 

@@ -12,15 +12,19 @@ def number_of_subscribers(subreddit):
     Return:
         The number of subscribers for the subreddit, or 0 if
     """
-    resp = requests.get(f"https://api.reddit.com/r/{subreddit}/about", headers={'user-agent': 'Bram'}, allow_redirects=False)
+    headers = {'user-agent': 'Bram'}
+    url = f"https://api.reddit.com/r/{subreddit}/about"
+    resp = requests.get(url, headers, allow_redirects=False)
 
     try:
         resp.raise_for_status()
-    except requests.exceptions.HTTPError:
+    except requests.exceptions.HTTPError as e:
+        # print(e)
         return 0
     else:
         try:
             number = resp.json().get('data')['subscribers']
-        except requests.exceptions.JSONDecodeError:
+        except requests.exceptions.JSONDecodeError as e:
+            # print(e)
             return 0
-        return resp.json().get('data')['subscribers']
+        return number

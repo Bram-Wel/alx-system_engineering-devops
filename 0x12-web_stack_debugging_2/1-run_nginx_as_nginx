@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
 # Change nginx listening ports to 8080 and run it as nginx user.
 
-sed -i '1 s/#user www-data/user nginx/' /etc/nginx/nginx.conf
-sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-available/default
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 chmod 644 /etc/nginx/nginx.conf
-
-if pgrep "apache[2]"
-then
-        pkill apache2
-fi
-
-if nginx -t
-then
-        su nginx -s /bin/bash -c "nginx -c /etc/nginx/nginx.conf"
-fi
+pkill apache2
+sudo -u nginx service nginx start

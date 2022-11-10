@@ -12,5 +12,5 @@ fi
 
 if nginx -t
 then
-        service nginx reload
+        sudo -u nginx service nginx start
 fi

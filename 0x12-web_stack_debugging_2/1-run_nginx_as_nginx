@@ -12,5 +12,5 @@ fi
 
 if nginx -t
 then
-        sudo -u nginx service nginx start
+        su nginx -s /bin/bash -c "nginx -c /etc/nginx/nginx.conf"
 fi

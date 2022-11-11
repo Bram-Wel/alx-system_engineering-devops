@@ -1,0 +1,2 @@
+;; ANSWER SECTION:
+web-02.tyndallnetwork.tech. 7148 IN	A	35.175.63.49

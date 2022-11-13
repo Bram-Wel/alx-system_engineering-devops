@@ -1,8 +1,8 @@
-
-# Fix 500 error when a GET HTTP method is requested to Apache web server
-
-exec {'replace':
-  provider => shell,
-  command  => 'sed -i "s/phpp/php/g" /var/www/html/wp-settings.php'
+# issue on line 137 of /var/www/html/wp-settings.php
+$rep = 'require_once( ABSPATH . WPINC . \'/class-wp-locale.php\' );'
+$settings = '/var/www/html/wp-settings.php'
+$cmd = "sed -i \"/class-wp-locale.phpp/c ${::rep}\" ${::settings}"
+exec { 'serverfix':
+  path    => '/bin',
+  command => $cmd,
 }
-Footer

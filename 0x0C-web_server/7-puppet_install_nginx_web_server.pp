@@ -1,5 +1,7 @@
 # Install & Configures Nginx with redirection using puppet
 
+include stdlib
+
 exec { 'apt update && apt upgrade':
   path    => '/usr/bin:/bin',
   command => 'sudo apt update && sudo apt upgrade -y',

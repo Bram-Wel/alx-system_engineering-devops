@@ -1,18 +1,29 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""Dictionary"""
+import json
 import requests
-import sys
+from sys import argv
+
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    users = requests.get(url + "users").json()
 
-    with open("todo_all_employees.json", "w") as jsonfile:
-        json.dump({
-            u.get("id"): [{
-                "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": u.get("username")
-            } for t in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
-            for u in users}, jsonfile)
+    users = requests.get(
+        "https://jsonplaceholder.typicode.com/users")
+    todos = requests.get(
+        "https://jsonplaceholder.typicode.com/todos")
+
+    users_json = users.json()
+    todos_json = todos.json()
+    data_list = {}
+
+    for uid in users_json:
+        data_list[str(uid['id'])] = []
+        for data in todos_json:
+            if uid['id'] == data['userId']:
+                data_list[str(uid['id'])].append({"username": uid['username'],
+                                                  "completed":
+                                                  data['completed'],
+                                                  "task":
+                                                  data['title']})
+    with open('todo_all_employees.json', 'w') as f:
+        write = json.dump(data_list, f)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Obtain list with 'https://jsonplaceholder.typicode.com' REST API."""
+"""Obtain list with REST API."""
 
 from sys import argv
 from ast import literal_eval

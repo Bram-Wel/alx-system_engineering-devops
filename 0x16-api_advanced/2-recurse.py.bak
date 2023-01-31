@@ -1,14 +1,12 @@
 #!/usr/bin/python3
-"""script for parsing web data from an api
-"""
+"""Script for parsing web data from an api."""
 import json
 import requests
 import sys
 
 
 def recurse(subreddit, hot_list=[]):
-    """api call to reddit to get the number of subscribers
-    """
+    """Get the number of subscribers."""
     base_url = 'https://www.reddit.com/r/{}/top.json'.format(
         subreddit
     )

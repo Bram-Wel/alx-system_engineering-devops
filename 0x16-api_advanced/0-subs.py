@@ -1,30 +1,31 @@
 #!/usr/bin/python3
-"""This module describes a query freturn."""
-
+"""script for parsing web data from an api
+"""
+import json
 import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
-    """Query the Reddit API.
-
-    Args:
-        @subredit: The type of resource/object requested
-    Return:
-        The number of subscribers for the subreddit, or 0 if
+    """api call to reddit to get the number of subscribers
     """
-    headers = {'user-agent': 'Bram'}
-    url = f"https://api.reddit.com/r/{subreddit}/about"
-    resp = requests.get(url, headers, allow_redirects=False)
+    base_url = 'https://www.reddit.com/r'
+    headers = {
+        'User-Agent':
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
+         KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+    }
+    # grab info about all users
+    url = '{}/{}/about.json'.format(base_url, subreddit)
+    response = requests.get(url, headers=headers)
+    resp = json.loads(response.text)
 
     try:
-        resp.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        # print(e)
+        # grab the info about the users' tasks
+        data = resp.get('data')
+        subscribers = data.get('subscribers')
+    except Exception as e:
         return 0
-    else:
-        try:
-            number = resp.json().get('data')['subscribers']
-        except requests.exceptions.JSONDecodeError as e:
-            # print(e)
-            return 0
-        return number
+    if subscribers is None:
+        return 0
+    return int(subscribers)

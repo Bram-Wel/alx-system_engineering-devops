@@ -15,13 +15,10 @@ def number_of_subscribers(subreddit):
     try:
         resp.raise_for_status()
     except requests.exceptions.HTTPError as e:
-        # print(e)
         return 0
     else:
         try:
             number = resp.json().get('data')['subscribers']
-        # except requests.exceptions.JSONDecodeError as e:
         except Exception:
-            # print(e)
             return 0
         return number

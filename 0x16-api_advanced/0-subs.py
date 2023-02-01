@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module describes a query function
+Contains function number_of_subscribers
 """
 import requests
 
@@ -13,8 +13,7 @@ def number_of_subscribers(subreddit):
     Return:
         The number of subscribers for the subreddit, or 0 if
     """
-    user_agent = "User-Agent: android:com.example.myredditapp:v1.2.3\
- (by /u/kemitche)"
+    user_agent = "android:com.example.myredditapp:v1.2.3 (by /u/kemitche)"
     # print(user_agent)
     headers = {'user-agent': user_agent}
     url = f"https://api.reddit.com/r/{subreddit}/about"

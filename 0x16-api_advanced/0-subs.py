@@ -26,7 +26,8 @@ def number_of_subscribers(subreddit):
     else:
         try:
             number = resp.json().get('data')['subscribers']
-        except requests.exceptions.JSONDecodeError as e:
+        # except requests.exceptions.JSONDecodeError as e:
+        except Exception:
             # print(e)
             return 0
         return number

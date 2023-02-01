@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""This module describes a query freturn."""
-
+"""
+This module describes a query function
+"""
 import requests
 
 

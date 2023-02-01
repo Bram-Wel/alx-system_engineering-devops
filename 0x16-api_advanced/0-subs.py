@@ -7,18 +7,10 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Returns the number of subscribers of a subreddit"""
-    user_agent = "android:com.example.myredditapp:v1.2.3 (by /u/kemitche)"
-    headers = {'user-agent': user_agent}
-    url = f"https://api.reddit.com/r/{subreddit}/about"
-    resp = requests.get(url, headers=headers, allow_redirects=False)
-
-    try:
-        resp.raise_for_status()
-    except requests.exceptions.HTTPError as e:
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {'User-Agent': "My user agent 1.0"}
+    subreddit_data = requests.get(url, allow_redirects=False, headers=headers)
+    if subreddit_data.status_code == 404:
         return 0
-    else:
-        try:
-            number = resp.json().get('data')['subscribers']
-        except Exception:
-            return 0
-        return number
+    number_of_subscribers = subreddit_data.json()['data']['subscribers']
+    return number_of_subscribers

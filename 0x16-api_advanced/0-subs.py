@@ -1,14 +1,26 @@
-""" 0. How many subs? """
-
-import requests as rq
+"""Request"""
+import requests
 
 
 def number_of_subscribers(subreddit):
-    """ Query reddit API & return no. of subs """
-    if subreddit:
-        res = rq.get('http://www.reddit.com/r/{}/about.json'.format(subreddit),
-                     headers={'User-Agent': 'Python/requests:APIproject:\
-v1.0.0 (by /u/aaorrico23)'}).json()
-        sub = res.get("data", {}).get("subscribers", 0)
-        return sub
+    """Request subreddit"""
+    url = 'https://api.reddit.com/r/{}/about.json'.format(subreddit)
+    header = {'User-agent': 'your bot 0.1'}
+    subred = requests.get(url, headers=header, allow_redirects=False)
+
+    if subred.status_code != 200:
+        return 0
+
+    try:
+        theme = subred.json()
+    except:
+        print("Not a valid JSON")
+        return 0
+
+    data = theme.get("data")
+    if data:
+        subscribers = data.get("subscribers")
+        if subscribers:
+            return subscribers
+
     return 0

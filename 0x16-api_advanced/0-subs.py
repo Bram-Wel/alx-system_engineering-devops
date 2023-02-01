@@ -1,26 +1,21 @@
-"""Request"""
+#!/usr/bin/python3
+"""Function to print hot posts on a given Reddit subreddit."""
 import requests
 
 
-def number_of_subscribers(subreddit):
-    """Request subreddit"""
-    url = 'https://api.reddit.com/r/{}/about.json'.format(subreddit)
-    header = {'User-agent': 'your bot 0.1'}
-    subred = requests.get(url, headers=header, allow_redirects=False)
-
-    if subred.status_code != 200:
-        return 0
-
-    try:
-        theme = subred.json()
-    except:
-        print("Not a valid JSON")
-        return 0
-
-    data = theme.get("data")
-    if data:
-        subscribers = data.get("subscribers")
-        if subscribers:
-            return subscribers
-
-    return 0
+def top_ten(subreddit):
+    """Print the titles of the 10 hottest posts on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    params = {
+        "limit": 10
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    if response.status_code == 404:
+        print("None")
+        return
+    results = response.json().get("data")
+    [print(c.get("data").get("title")) for c in results.get("children")]

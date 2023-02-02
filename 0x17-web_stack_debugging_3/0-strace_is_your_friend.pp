@@ -1,8 +1,10 @@
-# issue on line 137 of /var/www/html/wp-settings.php
-$rep = 'require_once( ABSPATH . WPINC . \'/class-wp-locale.php\' );'
-$settings = '/var/www/html/wp-settings.php'
-$cmd = "sed -i \"/class-wp-locale.phpp/c ${::rep}\" ${::settings}"
-exec { 'serverfix':
-  path    => '/bin',
-  command => $cmd,
+# Correct misspelling on /var/www/html/wp-settings.php line 137
+
+include stdlib
+
+file_line {'/var/www/html/wp-settings.php':
+  ensure => present,
+  path   => '/var/www/html/wp-settings.php',
+  line   => "require_once( ABSPATH . WPINC . '/class-wp-locale.php' );",
+  match  => '^require_once\( ABSPATH \. WPINC \. \'\/class-wp-locale\.phpp\' \);$',
 }
